@@ -1,0 +1,20 @@
+ACCION 2.1.2 ES 
+Ambiente 
+	sec: secuencia de caracteres; 
+	v: caracter; 
+	cont: entero; 
+
+Inicio 
+	cont:=0; 
+	ARR(sec);
+	AVZ(sec, v);
+
+	MIENTRAS v <> "Z" HACER 
+		SI(v <> "A" y v <> "E" y v <> "i" y v <> "O" y v <> "U") ENTONCES 
+			cont += 1; 
+		FIN SI 
+		AVZ(sec, v); 
+	FIN MIENTRAS
+
+	CERR(sec); 
+FIN 

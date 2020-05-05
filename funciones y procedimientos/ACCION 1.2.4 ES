@@ -1,0 +1,36 @@
+ACCION 1.2.4 ES 
+Ambiente 
+suma, valor, cant_valores, i:entero
+Funcion nroEntero(numero:entero):entero 
+	suma:= 0; 
+	SI(numero < 0) ENTONCES 
+		nroEntero:= -1; 
+	SI NO 
+		MIENTRAS numero > 0 HACER
+              suma:= suma + (numero mod 10)
+              numero:= numero DIV 10
+
+        FIN MIENTRAS 
+        nroEntero:= suma MOD 7; 
+    FIN SI 
+
+Inicio 
+	Esc('ingrese la cant de valores que desea comprobar');
+	leer(cant_valores); 
+
+	PARA i<cant_valores, i++ HACER 
+
+		Esc('ingrese el valor nro: ', i ,' que desea comprobar'); 
+		leer(valor)
+
+		valorResultante:= nroEntero(valor); 
+		SI ( valorResultante = -1) 
+			Esc('el valor es negativo')
+		SI NO
+			Esc('El valor es positivo, la clave que le corresponde es: ', valorResultante); 
+		FIN SI 
+	FIN PARA 
+
+FIN ACCION 
+
+

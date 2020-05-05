@@ -1,0 +1,17 @@
+ACCION cuadrado ES 
+Ambiente 
+	numero, resultado:entero;
+
+	Funcion Cuadrado(nro:entero):entero
+
+		Cuadrado:= nro*nro
+	Fin Funcion 
+
+Inicio
+	
+	Escribir('ing el numero'); 
+	Leer(numero); 
+	
+	Escribir('el resultado es: ', Cuadrado(numero));
+
+FIN 

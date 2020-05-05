@@ -1,0 +1,22 @@
+Inicio Secuencias_2.1.1 ES 
+Ambiente 
+	secuencia: secuencia de caracteres 
+	v: caracter 
+	cont: entero 
+
+Inicio 
+	cont:=0; 
+	ARR(secuencia); 
+	AVZ(secuencia, v); 
+
+	MIENTRAS v <> '*' HACER 
+		SI (v = 'A') ENTONCES 
+			cont:= cont + 1; 
+		FIN SI 
+
+		AVZ(secuencia, v); 
+	FIN MIENTRAS 
+
+Cerrar(secuencia); //Siempre se cierra la secuecia. 
+Escribir('cant de veces que se repite A: ', cont); 
+

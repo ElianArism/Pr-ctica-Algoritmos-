@@ -1,0 +1,32 @@
+Accion subacciones_final ES 
+Ambiente 
+	cant_unidades:entero 
+	precio_compra:real
+
+	Funcion Descuento(unidades:entero, precio:real):real
+	 precio_total:real; 
+	
+	 SI(unidades > 6) ENTONCES
+	 	precio_total := precio * 0.04; 
+
+	 SINO SI (unidades > 12) ENTONCES 
+	 	precio_total := precio * 0.1; 
+
+	 SINO
+	 	precio_total:= precio; 
+
+	 FIN SI 
+
+	 Descuento:= precio_total;  
+	FinFuncion 
+
+Inicio 
+
+	Escribir('ingrese la cantidad de unidades compradas'); 
+	Leer(cant_unidades);
+	Escribir('Ingrese el precio de la compra'); 
+	Leer(precio_compra);
+
+	Escribir('El precio total es: ', Descuento(cant_unidades, precio_compra));
+
+Fin 
