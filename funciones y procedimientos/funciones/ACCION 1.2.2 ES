@@ -1,0 +1,25 @@
+/*
+	Diseñe una función que devuelva la suma de los dígitos del número natural suministrado como parámetro.
+*/
+
+
+INICIO 1.2.2 ES 
+Ambiente 
+	numeroIng,suma:entero 
+
+	Funcion SumaDigitos(numero:entero):entero 
+	suma:= 0; 
+		MIENTRAS numero > 0 HACER
+              suma:= suma + (numero mod 10)
+              numero:= numero DIV 10
+        FIN MIENTRAS 
+
+        SumaDigitos:= suma; 
+Inicio 
+
+	Esc('ingrese el numero al que desee sumarle sus digitos')
+	leer(numeroIng); 
+
+	Esc('la suma de digitos del numero ingresado es: ', SumaDigitos(numeroIng)); 
+
+FIN 

@@ -1,4 +1,8 @@
-ACCION cuadrado ES 
+/*
+	Realice una función que dado un número devuelva su cuadrado.
+*/
+
+ACCION 1.2.1 ES 
 Ambiente 
 	numero, resultado:entero;
 

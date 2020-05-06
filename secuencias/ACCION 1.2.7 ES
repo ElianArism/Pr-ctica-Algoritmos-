@@ -1,0 +1,22 @@
+ACCION 1.2.7 ES 
+Ambiente 
+	conjunto = {"0","1","2","3","4","5","6","7","8","9"} 
+	variable: alfanumerico; 
+
+ Procedimiento verificarCaracter(caracter:alfanumerico):logico 
+	 SI caracter en conjunto ENTONCES 
+	 	Esc('Su numero es un digito')
+
+	 FIN SI 
+
+	 Esc('Su numero no es un digito')
+FIN FUNCION 
+
+INICIO 
+
+	Esc('ingrese su digito'); 
+	leer(variable); 
+
+	verificarCaracter(variable(1)); 
+
+FIN

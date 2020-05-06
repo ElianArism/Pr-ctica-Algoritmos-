@@ -1,0 +1,53 @@
+/*
+	Diseñe una función que permita ingresar 3 números y devuelva el mínimo valor. El programa principal debe permitir que este proceso se repita la cantidad de veces que el usuario desee.
+*/
+
+ACCION 1.2.3 ES 
+Ambiente 
+	num1, num2, num3: entero; 
+	flag: entero; 
+	Funcion compararNumeros(num1:entero, num2:entero, num3:entero):entero 
+			SI(num1 < num2  y num1 < num3) 
+				compararNumeros:= num1; 
+			SINO SI (num2 < num1 y num2 < num3)
+				compararNumeros:= num2; 
+			SINO SI (num3 < num1 y num3 < num2)
+				compararNumeros:= num3; 
+			SINO 
+				compararNumeros:= 0; 
+			FIN SI 
+
+	FIN FUNCION 
+
+Inicio 
+	flag := 1; 
+	
+	HACER
+
+		Esc('ingrese el primer numero que desea comparar, recuerde que los tres deben ser distintos'); 
+		leer(num1);
+
+		Esc('ingrese el segundo numero que desea comparar, recuerde que los tres deben ser distintos'); 
+		leer(num2);
+
+		Esc('ingrese el tercer numero que desea comparar, recuerde que los tres deben ser distintos'); 
+		leer(num3);
+
+		SI compararNumeros(num1,num2,num3) = 0 ENTONCES 
+			Esc('Ocurrió un error'); 
+		FIN SI 
+
+		Esc('el numero menor es: ', compararNumeros(num1,num2,num3)); 
+
+	 	Esc('Desea realizar otra vez la operación? presione 1 para comenzar otra vez, 0 para cerrar'); 
+
+	 	Leer(flag); 
+
+	MIENTRAS (flag = 1); 
+
+FIN 
+	
+
+
+
+

@@ -1,0 +1,30 @@
+ACCION 2.1.3 ES 
+Ambiente 
+	sec: secuencia de caracteres; 
+	v: caracter; 
+
+	sec2: secuencia de caracteres;
+
+Inicio 
+
+	ARR(sec); 
+	AVZ(sec, v); 
+	CREAR(sec2); 
+
+	MIENTRAS NFDS(sec) HACER //Mientras no finalice la secuencia(sec)
+
+		SI v <> "$" ENTONCES 
+			ESCRIBIR(sec2, v);  
+		FIN SI 
+
+		AVZ(sec, v);
+
+	FIN MIENTRAS 
+
+	CERRAR(sec); 
+	CERRAR(sec2);
+	
+FIN ACCIÓN
+
+
+
