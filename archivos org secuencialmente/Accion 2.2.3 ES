@@ -1,0 +1,49 @@
+Accion 2.2.3 ES 
+Ambiente 
+
+ domicilio = Registro
+ 	calle = an(20)
+ 	altura = n(10)
+ 	ciudad = an(20)
+ 	provincia = an(20)
+ Fin registro
+
+ socio = Registro 
+ 	nSoc = n(10) 
+ 	nTel = n(10)
+ 	ayn = an(20)
+ 	carr = an(3)
+ 	dom = domicilio 
+ 	cantUnidadesPrestadas = n(3)
+ Fin registro 
+
+ arSocio: archivo de socio; 
+ arSocioLP: archivo de socio; 
+ 
+ s =  socio; 
+
+ Procedimiento GenerarArchivoSociosConVariosLibrosPrestados(socio, arSocio)
+
+	mientras NFDA(arSocio) hacer
+		Si(socio.cantUnidadesPrestadas > 4 y socio.carr = 'ISI') entonces 
+			Grabar(arSocioLP, socio); 
+			Leer(arSocio, socio); 
+		Fin si 
+	Fin mientras
+
+ Fin procedimiento
+ 
+Inicio 
+ 	Abrir/S(arSocioLP); 
+	Leer(arSocioLP, s);
+
+	Abrir/E(arSocio); 
+	Leer(arSocio, s); 
+
+	GenerarArchivoSociosConVariosLibrosPrestados(arSocio, s); 
+
+	Cerrar(arSocio); 
+	Cerrar(arSocioLP); 
+
+Fin Accion 
+

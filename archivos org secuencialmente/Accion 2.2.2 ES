@@ -1,0 +1,42 @@
+Accion 2.2.2 ES
+Ambiente 
+	
+	Fecha = Registro 
+		Dia = n(2) 
+		Mes = n(2)
+		Anio = n(4)
+	Fin Fecha 
+
+	Factura = registro 
+		N° Factura = n(20)
+		Fecha = Fecha
+		Total = n(10)
+	Fin registro 
+
+
+	arFactura: archivo de factura;  	
+	f: factura; 
+	fechadada: fecha 
+
+Inicio 
+	
+	Abrir E/(arFactura); 
+	leer(arFactura, f); 
+
+
+	Esc('ingrese la fecha (dia/mes/año) '); 
+	leer(fecha.dia);  
+	leer(fecha.mes); 
+	leer(fecha.anio); 
+
+	Esc('Listado Factura: ');
+	
+ 	Mientras NFDA(arFactura) hacer
+	 		Si(f.fecha > fechadada y Total < 1000) entonces 
+	 			Esc(f.n_fac,' ',f.fecha,' ', f.total \n); 
+	 		Fin si 
+	 	leer(arFactura, f); 
+	Fin mientras
+
+	Cerrar(arFactura); 
+Fin Accion 

@@ -1,0 +1,49 @@
+Accion 2.2.5 ES 
+Ambiente 
+
+ fecha = registro 
+ 	dia: n(2) 
+ 	mes: n(2)
+ 	year: n(4)
+ Fin registro
+ 
+ alumnos = registro
+	NyA : an(20)
+	Carr: an(3)
+	n_Leg: n(8)
+	Fech_Nac: fecha
+	Fech_Ing: fecha
+	DNI: n(10)
+	Sexo: n(1)
+	Fech_ult_examen_aprob: n(10) 
+	Nota: n(2) 
+ FIN REGISTRO
+
+ arAlumnos: Archivo de alumnos ordenados secuencialmente; 
+ a: alumnos 
+ yearActual: n(4);
+
+ Inicio 
+ 
+ ABRIR E/(arAlumnos); 
+ leer(arAlumnos, a); 
+ 
+ Esc('ingrese el año actual'); 
+ leer(yearActual); 
+
+ yearActual:= yearActual - 1; 
+
+ Esc('Listado de alumnos: \n'); 
+
+ Mientras NFDA(arAlumnos) hacer 
+ 	si a.Fech_Ing.year = yearActual y  a.Nota > 7 entonces 
+ 		Esc(a.n_Leg," ", a.NyA," ", a.Carr, "\n");
+ 		leer(arAlumnos, a);
+ 	Fin si
+
+ 	leer(arAlumnos, a); 
+ Fin mientras
+
+ Cerr(arAlumnos);
+
+Fin accion 

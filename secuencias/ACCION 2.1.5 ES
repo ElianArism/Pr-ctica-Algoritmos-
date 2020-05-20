@@ -1,0 +1,22 @@
+ACCION 2.1.5 ES
+Ambiente
+    sec: secuencia de entero
+    v: entero
+    sec2:secuencia de entero
+    cont: entero
+Inicio
+    arr(sec)
+    avz(sec,v)
+    crear(sec2)
+    cont:=1
+    mientras NFDS(sec) hacer
+        si (cont<> v) entonces
+            esc(sec2, cont)
+        si no 
+            avz(s,v)
+        fin si
+        cont:=cont+1
+    fin mientras
+    cerrar(sec)
+    cerrar(sec2)
+Fin Accion

@@ -1,0 +1,54 @@
+/*
+	Diseñe un algoritmo que muestre un menú con las opciones sumar, restar, multiplicar y dividir, el algoritmo solicitará una opción y realizará la tarea elegida, se debe usar un procedimiento para mostrar el menú, pedir los datos en el algoritmo principal y después usar funciones para realizar los cálculos.	
+*/
+
+ACCION 1.2.10 ES 
+Ambiente 
+	opcion, n1, n2: entero
+
+	Funcion suma(n1, n2):entero
+		suma:= n1+n2; 
+	Fin Funcion 
+
+	Funcion resta(n1, n2):entero
+		resta:= n1-n2; 
+	Fin Funcion 
+
+	Funcion mult(n1, n2):entero
+		mult:= n1*n2; 
+	Fin Funcion 
+
+	Funcion div(n1, n2):entero
+		div:= n1/n2; 
+	Fin Funcion 
+
+	Procedimiento menu()
+		Esc('que desea hacer? \n
+			1. Sumar \n
+			2. Restar \n
+			3. Multiplicar \n 
+			4. Dividir \n
+			Seleccione la opcion correcta'); 
+	FIN Procedimiento 
+
+INICIO 
+
+	menu(); 
+	leer(opcion); 
+
+	Esc('Ingrese el primer numero'); 
+	leer(n1); 
+	Esc('Ingrese el segundo numero'); 
+	leer(n2); 
+
+	Segun opcion hacer: 
+		1: 
+			Esc(n1 ' + ',n2 ' = ', sumar(n1,n2));
+		2: 
+			Esc(n1 ' - ',n2 ' = ', restar(n1,n2));
+		3: 
+			Esc(n1 ' * ',n2 ' = ', mult(n1,n2));		
+		4: 
+			Esc(n1 ' / ',n2 ' = ', div(n1,n2));
+	Fin Segun; 
+FIN 

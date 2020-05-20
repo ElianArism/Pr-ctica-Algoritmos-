@@ -1,0 +1,39 @@
+Archivos
+ACCION 2.2.1 ES 
+Ambiente 
+ fecha = registro 
+ 	dia: n(2) 
+ 	mes: n(2)
+ 	year: n(4)
+ Fin registro
+ 
+ alumnos = registro
+	NyA : an(20)
+	Carr: an(3)
+	n_Leg: n(8)
+	Fech_Nac: fecha
+	Fech_Ing: fecha
+	DNI: n(10)
+	Sexo: n(1)
+	Fech_ult_examen_aprob: n(10) 
+	Nota: n(2) 
+ FIN REGISTRO
+
+ Archivo_Alumnos: Archivo de alumnos ordenados secuencialmente; 
+ alumno: alumnos 
+INICIO 
+
+ 	ABRIR E/(Archivo_Alumnos); 
+ 	leer(Archivo_Alumnos, alumnos); 
+
+ 	Esc('Listado alumnos: ');
+
+ 	MIENTRAS NoFDA(Archivo_Alumnos) HACER 
+ 		Esc(alumnos.n_leg," ", alumnos.NyA," ", alumnos.DNI, " ", alumnos.Carr \n);
+ 		leer(Archivo_Alumnos, alumno)
+ 	FIN MIENTRAS
+
+ 	CERRAR(Archivo_Alumnos); 
+ FIN 
+
+ 

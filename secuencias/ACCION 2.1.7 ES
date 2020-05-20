@@ -1,0 +1,48 @@
+ACCION 2.1.7 ES 
+Ambiente
+	sec: secuencia de enteros; 
+	v, i: entero;
+
+	Funcion UltimoNumeroDoc(sec: secuencia de enteros, v:entero):logico
+		para i:=2 hasta 10 
+			avz(sec, v); 
+				Si i = 10 entonces
+					Si (i = 0 o i = 1 o i = 2 o i = 3) entonces
+						UltimoNumeroDoc:= true; 
+					sino 
+						UltimoNumeroDoc:= false; 
+					Fin Si	
+				Fin Si 
+		fin Para
+		UltimoNumeroDoc:= false; 
+	Fin Funcion
+
+
+Inicio 
+	arr(sec); 
+	v:= 0; 
+	avz(sec, v);
+
+	crear(secOrganizada); 
+
+	mientras v <> 0 hacer 
+
+			Si (UltimoNumeroDoc(sec, v)) Entonces 
+				para i:=0 hasta 11
+				 	Esc(secOrganizada, v); 
+				 	avz(sec, v); 
+				 	avz(secOrganizada, v);
+				Fin para
+			sino 
+				para i:=0 hasta 11
+				 	avz(sec, v); 
+				Fin para
+			Fin si 
+	Fin mientras
+Fin accion 
+
+
+
+
+
+

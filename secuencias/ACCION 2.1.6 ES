@@ -1,0 +1,58 @@
+ACCION 2.1.6 ES 
+Ambiente
+	sec: secuencia de enteros
+	pob_total, v: entero 
+	pob_m, pob_f, pob_adulta, pob_noadulta: entero
+
+
+	procedimiento CategorizarPoblacion(tipo: entero, cant_pob: entero)
+		Segun tipo Hacer 
+			=1: 
+			 	pob_noadulta := pob_noadulta + cant_pob;
+			 	pob_m:= pob_m + cant pob; 
+			=2: 
+				pob_noadulta := pob_noadulta + cant_pob; 
+				pob_f:= pob_f + cant_pob; 
+			=3: 
+				pob_adulta := pob_adulta + cant_pob; 
+				pob_m:= pob_m + cant_pob; 
+			=4: 
+				pob_adulta := pob_adulta + cant_pob;
+				pob_f := pob_f + cant_pob; 
+
+		Fin Segun 
+	Fin procedimiento 
+
+	procedimiento CalcularPorcentajesDePoblacion() 
+		Esc('El porcentaje de poblacion masculina es del: ', (pob_m * pob_total)/100 ,' % ');
+		Esc('El porcentaje de poblacion femenina es del: ', (pob_f * pob_total)/100 ,' % ');   
+		Esc('El porcentaje de poblacion adulta es es del: ', (pob_adulta * pob_total)/100 ,' % ');
+		Esc('El porcentaje de poblacion menor de edad es es del: ', (pob_noadulta * pob_total)/100 ,' % ');
+	Fin procedimiento 
+
+Inicio 
+	arr(sec);
+	avz(sec, v); 
+	pob_total:= 0; 
+	pob_m:= 0; 
+	pob_f:=0; 
+	pob_adulta:=0;
+	pob_noadulta:=0; 
+ 
+	para i:= 1 hasta 23  
+		para j:= 1 hasta 4 
+			CategorizarPoblacion(j, v); 
+			pob_total := pob_total + v; 
+			avz(sec, v); 
+		fin para 
+	avz(sec, v); 
+	fin para; 
+
+	CalcularPorcentajesDePoblacion(); 
+	cerrar(sec)
+
+Fin accion
+
+
+
+

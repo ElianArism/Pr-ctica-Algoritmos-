@@ -1,0 +1,26 @@
+/*
+	Crear un procedimiento que intercambie los valores de dos variables numéricas.
+*/
+
+ACCION 1.2.8
+Ambiente 
+	n1, n2:entero 
+
+	Procedimiento intercambiarValores(v1,v2)
+	 	n1:= v2; 
+	 	n2:= v1; 
+	FIN PROCEDIMIENTO
+INICIO 
+ 
+	Esc('Escribir el num1');
+	Leer(n1); 
+	Esc('Escribir el num2')
+	Leer(n2); 
+
+	Esc('valores: ', n1, ' ', n2);
+
+	intercambiarValores(n1, n2);
+
+	Esc('valores intercambiados: ', n1, ' ', n2); 
+
+FIN

@@ -1,0 +1,29 @@
+ACCION 2.1.9 ES 
+Ambiente 
+ sec: secuencia de caracteres; 
+ v: caracter; 
+ cont: entero; 
+Inicio 
+ Arr(sec); 
+ Avz(sec, v);
+ cont = 0;
+
+ Mientras NFDS(sec) HACER 
+
+ 	Mientras v = " " Hacer
+	 	avz(sec, v);
+	Fin Mientras 
+
+	si(v = 'I') entonces 
+	 	cont = cont + 1; 
+	Fin si
+
+	mientras v <> " " hacer
+		avz(sec, v); 
+	Fin mientras 
+
+ Fin Mientras
+
+ Esc('la cantidad de palabras que empiezan con la letra I son: ', cont); 
+ cerr(sec); 
+Fin ACCION  

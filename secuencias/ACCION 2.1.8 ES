@@ -1,0 +1,32 @@
+ACCION 2.1.8 ES
+Ambiente 
+	secOrganizada: secuencia de enteros; 
+	v:entero; 
+	sec2: secuencia de caracter 
+	b, guion: caracter; 
+
+	procedimiento Metamorfosis(sec:secuencia de enteros, v:entero)
+		Crear(sec2);
+		avz(sec2, b); 
+		guion:= "-"; 
+		Mientras v <> 0 hacer 
+				para i := 0 hasta 11
+					Escribir(sec2, v)
+					azv(sec, v);
+					avz(sec2, b);  	
+				Fin para 
+			avz(sec2, b); 
+			Escribir(sec2, guion); 
+		Fin mientras
+	fin procedimiento 
+
+Accion
+	arr(secOrganizada); 
+	avz(secOrganizada, v); 
+
+	Metamorfosis(secOrganizada, v); 
+
+	mientras NFDS(sec2) HACER 
+		esc(sec2, b); 
+		avz(sec2, b); 
+	Fin mientras
