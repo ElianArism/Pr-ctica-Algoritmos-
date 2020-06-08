@@ -1,0 +1,104 @@
+Acción 2.2.11 Es 
+Ambiente 
+
+	Fecha = registro
+		d: n(1..31) 
+		m: n(1..12)
+		a: n(4)
+	fin registro 
+
+	Fin registro
+	alumno = registro 
+		sexo: af('H','M')
+		carr: af('ISI', 'IEM', 'LAR', 'IQ')
+		nLeg: n(10)
+		fIngreso: Fecha 
+		totMatAprobadas: n(2)
+	Fin registro
+
+	arAlumnos: archivo de alumnos ordenado secuencialmente 
+	a: alumno 
+
+	total_sex_masVeinte, total_sex_menosVeinte: entero
+	total_carr_masVeinte, total_carr_menosVeinte: entero
+	total_ing_masVeinte, total_ing_menosVeinte: entero
+	resSexo: ('H', 'M')
+	resCarrera: ('ISI', 'IEM', 'LAR', 'IQ')
+
+
+
+	Subaccion CORTE_CARRERA es 
+
+		Esc('Total de alumnos de la carrera ', resCarrera, ' del sexo: ', resSexo, 'con mas de 20 materias aprobadas es: ', total_carr_masVeinte); 
+		Esc('Total de alumnos de la carrera ', resCarrera, ' del sexo: ', resSexo, 'con mas de 20 materias aprobadas es: ', total_carr_menosVeinte); 
+
+		total_sex_masVeinte:= total_sex_masVeinte + total_carr_masVeinte;
+		total_sex_menosVeinte:=  total_sex_menosVeinte + total_carr_menosVeinte;
+		total_carr_masVeinte:= 0; 	total_carr_menosVeinte:= 0; 
+		resCarrera:= a.Carrera; 
+
+	Fin Subaccion
+
+
+	Subaccion CORTE_SEXO es 
+		CORTE_CARRERA
+		
+		Esc('El total de alumnos del sexo ', resSexo,'con más de 20 materias aprobadas es: ', total_sex_masVeinte); 
+		Esc('El total de alumnos del sexo ', resSexo,'con más de 20 materias aprobadas es: ', total_sex_menosVeinte); 
+
+		resSexo:= a.Sexo; 
+		total_ing_masVeinte:=  total_ing_masVeinte + total_sex_masVeinte; 
+		total_ing_menosVeinte:= total_ing_menosVeinte + total_sex_menosVeinte;
+
+		total_sex_masVeinte:= 0; 	total_sex_menosVeinte:= 0;
+	Fin Subaccion
+
+Inicio 
+	
+	Abrir E/(arAlumnos); 
+	leer(arAlumnos, a);
+
+	total_sex_masVeinte:= 0; 	total_sex_menosVeinte:= 0;
+	total_carr_masVeinte:= 0; 	total_carr_menosVeinte:= 0; 
+	total_ing_masVeinte:= 0; 	total_ing_menosVeinte:= 0; 
+
+	resSexo:= a.sexo 	resCarrera: a.carr
+
+	Mientras NFDA(arAlumnos) Hacer 
+
+		Si (a.sexo <> resSexo) entonces 
+			
+			CORTE_SEXO 
+
+		contrario 
+
+			si (a.carrera <> resCarrera) entonces 
+
+				CORTE_CARRERA
+
+			fin si 
+
+		fin si 
+
+		si (a.cantMatAprobadas >= 20) entonces 
+
+			total_ing_masVeinte:= total_ing_masVeinte + 1; 
+
+		contrario 
+			total_ing_menosVeinte := total_ing_menosVeinte + 1; 
+
+		fin si 
+
+		leer(arAlumnos, a); 
+
+	Fin mientras 
+
+
+      Corte_Sexo
+
+      Esc('el total de alumnos que ingresaron con más de 20 materias aprobadas es', tot_carr_may)
+      Esc('el total de alumnos que ingresaron con menos de 20 materias aprobadas es', tot_carr_men)
+
+      Cerrar(arAlumnos); 
+
+FinAccion

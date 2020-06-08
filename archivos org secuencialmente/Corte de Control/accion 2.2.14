@@ -1,0 +1,75 @@
+accion 2.2.14 
+Ambiente 
+
+	censo = registro 
+		radio: n(10) 
+		mza: n(3) 
+		nViv: n(5)
+		conViv: ('Muy buena', 'Buena', 'Mala') 
+		cantH: n(10) 
+	fin registro 
+
+	c: registro de censo; 
+	arCenso: archivo de censo ordenado; 
+
+	totalxCiudad, totalxRadio, totalxManzana: entero
+	resRadio, resManzana: entero 	
+
+	subaccion CORTE_MZA es  
+		totalxManzana:= totalxManzana + c.cantH; 
+		Esc('La cantidad de habitantes de Resistencia cuya condicion de vivienda es: Muy buena en la manzana: ',resManzana,' es de: ',totalxManzana); 
+
+		resManzana:= c.mza; 
+		totalxManzana:= 0; 	
+	fin subaccion 
+
+	subaccion CORTE_RADIO es
+		CORTE_MZA 
+		totalxRadio:=  totalxRadio + totalxManzana;  
+		Esc('La cantidad de habitantes de Resistencia cuya condicion de vivienda es: Muy buena, en el radio: ',resRadio,' es de: ',totalxRadio)
+
+		resRadio: c.radio; 
+		totalxRadio:= 0; 
+	fin subaccion 
+	Inicio 
+
+	Abrir E/(arCenso); 
+	Leer(arCenso, c); 
+
+	totalxCiudad:= 0; totalxRadio:= 0; totalxManzana:= 0; 
+
+	resRadio:= c.radio; resManzana:= c.mza; 
+
+	mientras NFDA(arCenso) hacer 
+
+		si (c.conViv = 'Muy buena') entonces 
+
+			si (resRadio <> c.radio) entonces 
+
+				CORTE_RADIO 
+
+			contrario 
+
+				si (resManzana <> c.mza) entonces 
+
+					CORTE_MZA 
+
+				fin si 
+
+			fin si 
+
+			totalxCiudad:= totalxCiudad + c.cantH; 
+
+		fin si 
+
+		leer(arCenso, c); 
+	
+	fin mientras 
+
+	CORTE_RADIO 
+
+	Esc('El total de habitantes de Resistencia cuya condicion de vivienda es: Muy buena, es de: ', totalxCiudad); 
+
+	Cerrar(censo, c); 
+
+Fin 

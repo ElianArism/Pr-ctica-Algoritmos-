@@ -1,0 +1,82 @@
+accion 2.2.12 es 
+Ambiente 
+ 	poblacion = registro 
+ 		prov: an(10) 
+ 		depto: an(12) 
+ 		barrio: an(20)
+ 		idCasa: n(10000)
+ 		cantHabitantes: n(10000000000)
+ 	fin registro; 
+
+ 	poblacionSalida = registro
+ 		prov: an(10) 
+ 		depto: an(12) 
+ 		cantHabitantes: an(10000000000)
+ 	poblacionSalida = registro 
+
+ 	arPais: Archivo de pais ordenado por provincia departamento ciudad barrio idCasa 
+ 	p: registro de poblacion; 
+
+ 	resDepto, resProv: alfanumerico 
+
+ 	nuevoArchivo: archivo de salida; 
+ 	s: registro de nuevoArchivo; 
+
+ 	cantHabitantes: entero;
+
+
+
+ 	subaccion CORTE_DPTO es  
+	 	s.cantHabitantes:= cantHabitantes;  
+	 	s.depto:= resDepto; 
+	 	s.prov:= resProv; 
+	 	grabar(nuevoArchivo, s);
+	 	cantHabitantes:= 0; 
+	 	resDepto:= p.depto; 
+	fin sub
+
+
+
+ 	subaccion CORTE_PROVINCIA es  
+ 		CORTE_DPTO 
+ 		resProv:= p.prov; 
+ 	fin sub 
+
+
+
+
+ 	Inicio 
+
+ 	Abrir E/(arPais); 
+ 	Leer(arPais, p); 
+
+ 	Abrir /S(nuevoArchivo); 
+ 	Leer(nuevoArchivo, s); 
+
+ 	cantHabitantes:= 0;  
+ 	resDepto:= p.depto; resProv:= p.prov; 
+
+ 	mientras NFDA(arPais) Hacer 
+
+		si(resProv <> p.prov) entonces 
+			CORTE_PROVINCIA
+		
+		contrario 
+
+			si(resDepto<> p.depto)
+
+			CORTE_DPTO
+
+			fin si 
+		fin si 
+
+	cantHabitantes:= cantHabitantes + p.cantHabitantes; 
+	Leer(arPais, p); 
+
+	fin mientras
+
+	CORTE_PROVINICIA 
+
+	cerrar(nuevoArchivo); 
+	cerrar(arPais); 
+	

@@ -1,0 +1,136 @@
+Un Casino de la región ha notado un incremento en los costos de las reparaciones de tragamonedas en sus sucursales. Por ello solicitó un informe con la cantidad de reparaciones y sus costos, discriminados según tragamonedas, modelo, marca, sucursal y total general.
+
+Se dispone de un archivo REPARACIONES, con el siguiente formato. Cada registro representa la reparación de un tragamonedas, tener en cuenta que puede existir más de una reparación por tragamonedas.
+
+REPARACIONES Ordenado por Cod_Sucursal, Marca, Modelo, Cod_Tragamonedas
+
+Cod_SucursalMarcaModeloCod_TragamonedasFecha_ReparacionCosto_Reparacion
+Realice el algoritmo para emitir el informe con los totales solicitados
+
+
+
+accion 2.2.13 
+Ambiente 
+	
+	fecha = registro 
+		dia: n(1..31) 
+		mes: n(1..12) 
+		year:n(4)
+	fin registro 
+
+	reparaciones = registro 
+		codSucursal: n(10)
+		marca: an(10) 
+		modelo: an(10)
+		codTragamonedas: n(10)
+		fechaReparacion: fecha 
+		costoReparacion: n(10)
+	fin registro 
+
+
+	arReparaciones: archivo de reparaciones ordenado 
+
+	r: Registro de arReparaciones 
+	
+	contMaquinas, contModelo, contMarca, contSucursal, cont: entero; 
+	
+	resSucursal, resTragamonedas: entero;  
+	resMarca, resModelo: alfanumerico
+
+	totalModelo, totalMarca, totalSucursal, totalMaquinas, totalGeneral: real; 
+
+	subaccion  CORTE_TRAGAMONEDAS es 
+		totalMaquinas:= totalMaquinas + r.costoReparacion; 
+		contMaquinas:= cont + contMaquinas; 
+		Esc('el total de costo de reparacion de la maquina ': ,r.codTragamonedas, ' es: ', totalMaquinas, ' y la cantidad de reparaciones de la maquina fueron: ', contMaquinas);
+		resTragamonedas:= r.codTragamonedas; 
+		contMaquinas:= 0;
+		totalMaquinas:= 0; 
+
+	subaccion CORTE_MODELO es 
+		CORTE_TRAGAMONEDAS 
+		totalModelo:= totalModelo + totalMaquinas; 
+		contModelo:= contModelo + contMaquinas; 
+		Esc('El total del costo de reparacion del modelo: ', r.modelo,'es: ', totalModelo, ' y la cantidad de reparaciones de maquinas del modelo fueron: ', contModelo); 
+		resModelo:= r.modelo; 
+		contModelo:= 0; 
+		totalModelo:= 0; 
+	fin subaccion
+
+	subaccion CORTE_MARCA es 
+		CORTE_MODELO
+		totalMarca:= totalMarca + totalModelo; 
+		contMarca:= contModelo + contMarca; 
+		Esc('El total del costo de reparacion de la marca: ', r.marca, ' es: ', totalMarca, ' y la cantidad de reparaciones de maquinas de la marca fueron: ', contMarca); 
+		resMarca:= r.marca;
+		totalMarca:= 0; 
+		contMarca:= 0;  
+
+	Fin subaccion
+
+	subaccion CORTE_SUCURSAL es 
+		CORTE_MARCA
+		contSucursal:= contMarca + conSucursal  
+		totalSucursal:= totalSucursal + totalMarca; 
+		Esc('el total del costo de reparacion de la sucursal: ', r.codSucursal, ' es : ', totalSucursal,' y la cantidad de reparaciones en la sucursal fueron: ' contSucursal); 
+		resSucursal:= r.sucursal; 
+		totalSucursal:= 0; 
+		contSucursal:= 0; 
+	Fin subaccion 
+
+
+
+Inicio 
+	
+	Abrir E/(arReparaciones); 
+	leer(arReparaciones, r); 
+	contMaquinas:= 0; contModelo:= 0; contMarca:= 0; contSucursal:= 0; cont:= 0;
+	totalModelo:= 0; totalMarca:= 0; totalSucursal:= 0; totalMaquinas:= 0; totalGeneral:= 0;
+	resSucursal:= r.codSucursal; resTragamonedas:= r.codTragamonedas 
+	resMarca:= r.marca; resModelo:= r.modelo;  
+
+	mientras NFDA(arReparaciones) hacer 
+
+		si(resSucursal <> r.codSucursal) entonces 
+
+			CORTE_SUCURSAL 
+
+		contrario 
+
+			si(resMarca <> r.marca) entonces 
+
+				CORTE_MARCA 
+
+			contrario 
+
+				si(resModelo <> r.modelo) entonces 
+
+					CORTE_MODELO 
+
+				contario 
+
+					si(resTragamonedas <> r.codTragamonedas) entonces 
+
+						CORTE_TRAGAMONEDAS 
+					
+					fin si 
+				
+				fin si 
+			
+			fin si 
+		
+		fin si 
+
+	totalGeneral:= totalGeneral + r.costoReparacion;  
+	cont: cont + 1; 
+	leer(arReparaciones, r); 
+
+	Fin mientras 
+
+	CORTE_SUCURSAL 
+
+	Esc('el total general de reparaciones es: ', totalGeneral, 'y la cantidad de reparaciones en total fueron: ' cont); 	
+	cerrar(arReparaciones); 
+
+fin 
+

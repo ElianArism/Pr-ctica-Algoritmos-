@@ -1,0 +1,65 @@
+Accion 2.2.11 ES 
+Ambiente
+	
+	fecha = registro
+		day = n(2)
+		mth = n(2)
+		year = n(4)
+	fin registro
+
+	alumno = registro
+		nya : an(20)
+		sexo = {'H','M'}
+		carr: an(3)
+		nLeg: n(8)
+		fNac: fecha
+		fIng: fecha
+		dni: n(10)
+		tMateriasAp: n(3)
+	FIN REGISTRO
+
+ 	 
+  	a = alumno;
+	arAlumnos = archivo de alumno; 
+	tCarr: a.carr;
+	tSexo: a.sexo; 
+	contAprobados = entero;
+	contNoAprobados = entero; 
+
+	Subaccion CORTE_SEXO ES
+
+	Fin subaccion 
+
+	Subaccion CORTE_CARRERA ES 
+
+
+	Fin subaccion 
+
+
+Inicio 
+
+	contAprobados:= 0; 
+	contNoAprobados:= 0; 
+	Abrir E/(arAlumnos); leer(arAlumnos, a);
+
+	mientras NFDA(arAlumnos) hacer 
+
+		si(a.fIng = 2009) entonces
+			si(tSexo <> a.sexo) entonces 
+				CORTE_SEXO
+		
+		contrario
+		 
+			si	(tCarr <> a.carr) entonces
+				CORTE_CARRERA
+			Fin si 
+		Fin si
+
+		leer(arAlumnos, a); 
+	Fin mientras
+
+	Esc('cantidad de alumnos ingresados en el 2009 con mas de 20 materias aprobadas: ', contAprobados);
+	Esc('cantidad de alumnos ingresados en el 2009 con menos de 20 materias aprobadas: ', contNoAprobados); 
+
+	Cerrar(arAlumnos);
+Fin 

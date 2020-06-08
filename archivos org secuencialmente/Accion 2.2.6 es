@@ -1,0 +1,65 @@
+Accion 2.2.6 es
+Ambiente 
+	graduados = Registro 
+	 	nomYap: af(20)
+	 	prom: n(2)
+	 	rec: { "NO", "SI","F", "MF"} 
+	Fin registro 
+
+	aGraduados: archivo de graduados 
+	g: graduados 
+
+	prom: alfanumerico; 
+	cont: numerico; 
+	promGlobal: numerico; 
+
+	funcion setRecomendacion(promedio)
+		segun promedio hacer
+			promedio < 8 :
+				setRecomendacion:= "SI"
+
+			promedio <= 9
+				setRecomendacion:= "F"
+
+			promedio > 9
+				setRecomendacion:= "MF"
+
+	Fin funcion  
+Inicio 
+	
+	prom:= ""; 
+	cont:= 0; 
+	promGlobal:= 0; 
+
+	Abrir E/(aGraduados); 
+	Leer(aGraduados, g); 
+
+	Esc('Listado de Recomendaciones'); 
+	mientras NFDA(aGraduados) hacer
+		si g.prom < 7 entonces 
+			g.rec:= "NO"
+
+			cont:= cont + 1; 
+			promGlobal:= promGlobal + g.prom; 
+		fin si  
+
+		si g.prom > 7 entonces 
+			prom:= setRecomendacion(g.prom); 
+			g.rec:= prom;
+
+			cont:= cont+1; 
+			promGlobal:= promGlobal + g.prom;  
+		fin si 
+
+		Esc(g.nomYap," ", g.prom," ", g.rec); 
+		leer(aGraduados, g); 
+	Fin mientras
+
+	Esc('Total de graduados: ', cont); 
+
+	promGlobal:= promGlobal / cont; 
+
+	Esc('Promedio global: ', promGlobal); 
+
+
+
